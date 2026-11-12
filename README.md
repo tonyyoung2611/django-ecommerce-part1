@@ -31,7 +31,7 @@ product reviews, and password reset functionality.
 ### 1. Clone the Repository
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/tonyyoung2611/django-ecommerce-part1.git
 cd ecommerce_project
 ```
 

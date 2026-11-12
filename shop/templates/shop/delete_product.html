@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Product</title>
+</head>
+<body>
+    <h1>Delete Product</h1>
+
+    <h2>Are you sure you want to delete this product?</h2>
+
+    {% if error %}
+        <p style="color: red;">
+            {{ error }}
+        </p>
+    {% endif %}
+
+    <p>Product: {{ product.name }}</p>
+    <p>Price: ${{ product.price }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <button type="submit">
+            Yes, Delete Product
+        </button>
+    </form>
+
+    <p>
+        <a href="{% url 'vendor_dashboard' %}">
+            Cancel - Back to Vendor Dashboard
+        </a>
+    </p>
+</body>
+</html>

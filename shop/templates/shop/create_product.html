@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add a Product</title>
+</head>
+<body>
+    <h1>Add a New Product</h1>
+
+    <h2>Welcome, {{ request.user.username }}!</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Add Product
+        </button>
+    </form>
+
+    <p>
+        <a href="{% url 'vendor_dashboard' %}">
+            Back to Vendor Dashboard
+        </a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My eCommerce Store</title>
+</head>
+<body>
+    <h1>Welcome to Our Online Store!</h1>
+
+    <h2>Available Products</h2>
+
+    {% for product in products %}
+        <h3>{{ product.name }}</h3>
+        <p>Store: {{ product.store.name }}</p>
+        <p>{{ product.description }}</p>
+        <p>Price: ${{ product.price }}</p>
+        <p>Stock: {{ product.stock }}</p>
+        
+        <form action="{% url 'add_to_cart' product.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">Add to Cart</button>
+        </form>
+
+        <a href="{% url 'add_review' product.id %}">
+            Write a Review
+        </a>
+
+        <h4>Customer Reviews</h4>
+
+        {% for review in product.reviews.all %}
+            <p>
+                Rating: {{ review.rating }}/5
+            </p>
+
+            <p>{{ review.comment }}</p>
+
+            <p>Reviewed by: {{ review.user.username }}</p>
+
+            {% if review.verified_purchase %}
+                <p>Verified Purchase</p>
+            {% else %}
+                <p>Unverified Purchase</p>
+            {% endif %}
+
+            <hr>
+        {% empty %}
+        <p>No reviews yet.</p>
+        {% endfor %}
+
+        <hr>
+
+    {% empty %}
+        <p>No products available yet.</p>
+    {% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Confirmation</title>
+</head>
+<body>
+    <h1>Thank You for Your Purchase!</h1>
+
+    <h2>Order #{{ order.id }}</h2>
+
+    <p>
+        Your order has been placed successfully.
+    </p>
+
+    <h3>Order Details</h3>
+
+    {% for item in order.items.all %}
+        <p>
+            {{ item.product.name }}
+            - Quantity: {{ item.quantity }}
+            - Price: ${{ item.price }}
+        </p>
+    {% endfor %}
+
+    <h3>Total: ${{ order.total }}</h3>
+
+    <a href="{% url 'product_list' %}">
+        Continue Shopping
+    </a>
+</body>
+</html>

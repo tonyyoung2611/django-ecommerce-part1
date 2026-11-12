@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vendor Dashboard</title>
+</head>
+<body>
+    <h1>Vendor Dashboard</h1>
+
+    <h2>Welcome, {{ request.user.username }}!</h2>
+
+    <h3>Your Stores</h3>
+
+    {% for store in stores %}
+        <h4>{{ store.name }}</h4>
+
+        <p>{{ store.description }}</p>
+
+        <a href="{% url 'edit_store' store.id %}">
+            Edit Store
+        </a>
+
+        |
+
+        <a href="{% url 'delete_store' store.id %}">
+            Delete Store
+        </a>
+
+        <h5>Products</h5>
+
+        
+    {% for product in store.products.all %}
+        <p>{{ product.name }} - ${{ product.price }}</p>
+
+        <a href="{% url 'edit_product' product.id %}">
+            Edit Product
+        </a>
+
+        |
+
+        <a href="{% url 'delete_product' product.id %}">
+            Delete Product
+        </a>
+
+        <br><br>
+    {% empty %}
+        <p>No products in this store yet.</p>
+    {% endfor %}
+
+        <hr>
+    {% empty %}
+        <p>You haven't created any stores yet.</p>
+    {% endfor %}
+
+    <a href="{% url 'product_list' %}">
+        Back to Storefront
+    </a>
+</body>
+</html>

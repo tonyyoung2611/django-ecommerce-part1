@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login to Your Account</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p>
+        <a href="{% url 'password_reset' %}">
+            Forgot Your Password?
+        </a>
+    </p>
+
+    <p>
+        Don't have an account?
+        <a href="{% url 'register' %}">Register here</a>
+    </p>
+
+    <a href="{% url 'product_list' %}">
+        Back to Store
+    </a>
+</body>
+</html>
